@@ -59,6 +59,7 @@ def getDB(sql_query):
 
     return out_query
 
+logging.basicConfig(filename='vitakai.log',level=logging.DEBUG)
 
 end_date = datetime.datetime.now()
 begin_date = end_date  - datetime.timedelta(days=1)
