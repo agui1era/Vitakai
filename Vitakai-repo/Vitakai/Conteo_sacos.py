@@ -61,7 +61,7 @@ print(str_begin_date)
 
 #horarios para considerar en el conteo de sacos
 
-only_str_end_date=end_date.strftime("%d/%m/%Y 23:00:00")
+only_str_end_date=end_date.strftime("%d/%m/%Y 22:00:00")
 print(only_str_end_date)
 
 only_start_str_date=end_date.strftime("%d/%m/%Y 06:00:00")
@@ -78,8 +78,8 @@ result_10=str(getDB(sql_str_10))
 print(sql_str_25)
 result_25=str(getDB(sql_str_25))
 
-print(result_10)
-print(result_25)
+print("Sacos de 10K x min: "+result_10)
+print("Sacos de 25K x min: "+result_25)
 
 #envio datos a THB
 if result_10 != "None":

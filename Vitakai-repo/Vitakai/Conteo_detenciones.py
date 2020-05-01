@@ -69,21 +69,21 @@ str_t14=end_date.strftime("%d/%m/%Y 14:00:00")
 
 str_t18=end_date.strftime("%d/%m/%Y 18:00:00")
 
-str_t5=end_date.strftime("%d/%m/%Y 20:00:00")
+str_t20=end_date.strftime("%d/%m/%Y 20:00:00")
 
 
 
-sql_str_det="SELECT key FROM ts_kv WHERE ts >= " + date_to_milis(str_begin_date)+" AND ts <= " + date_to_milis(str_end_date) + " AND (key = 'Detencion_20_minutos' OR key = 'Saco10K' OR key = 'Saco20K') AND ((ts >= " + date_to_milis(str_t8) + " AND ts <= " + date_to_milis(str_t13) + ") OR ( ts >= " + date_to_milis(str_t14) + " AND ts <= " + date_to_milis(str_t18)+"))" 
+sql_str_det="SELECT key FROM ts_kv WHERE ts >= " + date_to_milis(str_begin_date)+" AND ts <= " + date_to_milis(str_end_date) + " AND (key = 'Detencion_20_minutos' OR key = 'Saco10K' OR key = 'Saco25K') "
 
 
 print(sql_str_det)
 result_det=str(getDB(sql_str_det))
 print(result_det)
 
-#registro una detención si no hay registros de nuevos sacos u otras detenciones
+#registro una detencion si no hay registros de nuevos sacos u otras detenciones
 
 #if result_det == "ERROR" and (((date_to_milis(str_t1) >= date_to_milis(str_end_date)) and (date_to_milis(str_t2) <= date_to_milis(str_end_date)) ) or ((date_to_milis(str_t3) >= date_to_milis(str_end_date)) and (date_to_milis(str_t4) <= date_to_milis(str_end_date)))) :
 
-if result_det == "ERROR":
+if (result_det == "ERROR") and ( (date_to_milis(str_end_date) >= date_to_milis(str_t8)) and (date_to_milis(str_end_date) <= date_to_milis(str_t13))) or ((date_to_milis(str_end_date) >= date_to_milis(str_t14)) and (date_to_milis(str_end_date) <= date_to_milis(str_t18))):
     os.system('curl -v -X POST -d "{\"Detencion_20_minutos\": 20}" http://localhost:8080/api/v1/0nMihSqafQ5IT3Rqoysa/telemetry --header "Content-Type:application/json"')
 

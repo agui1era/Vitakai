@@ -52,7 +52,7 @@ def date_to_milis(date_string):
 
 #rendimientos de sacos x min
 end_date = datetime.datetime.now()
-str_end_date=end_date.strftime("%d/%m/%Y %H:%M:%S")
+str_end_date=end_date.strftime("%d/%m/%Y 22:00:00")
 print(str_end_date)
 
 
@@ -71,8 +71,6 @@ cantidad_personas=getDB(sql_cantidad_personas)
 costo_medio_jornada=getDB(sql_costo_medio_jornada)
 
 
-
-
 if sum_sacos10K == None:
    sum_sacos10K="0"
 if sum_sacos25K == None:
@@ -80,18 +78,18 @@ if sum_sacos25K == None:
    
 if  (int(sum_sacos10K*10)== 0) and (int(sum_sacos25K*25)==0):
     
-    result_total=0
+    result_total_pesos=0
       
 else:
-    result_total=str((cantidad_personas*costo_medio_jornada)/(int(sum_sacos10K*10)+int(sum_sacos25K*25)))
+    result_total_pesos=str((cantidad_personas*costo_medio_jornada)/(int(sum_sacos10K*10)+int(sum_sacos25K*25)))
 
-print("Kilos en sacos de 10K: "+str(sum_sacos10K))
-print("Kilos en sacos de 25K: "+str(sum_sacos25K))
+print("Kilos en sacos de 10K: "+str(sum_sacos10K*10))
+print("Kilos en sacos de 25K: "+str(sum_sacos25K*25))
 print("Cantidad de personas en la linea: "+str(cantidad_personas))
 print("Costo medio jornada: "+str(costo_medio_jornada))
-print("Costo del kilo procesado: "+str(result_total))
+print("Costo del kilo procesado: "+str(result_total_pesos))
 
 #envio datos a THB
 os.system('curl -v -X POST -d "{\"Kilos_totales_sacos_10K": '+str(sum_sacos10K*10)+'}" iot.igromi.com:8080/api/v1/0nMihSqafQ5IT3Rqoysa/telemetry --header "Content-Type:application/json"')
 os.system('curl -v -X POST -d "{\"Kilos_totales_sacos_25K": '+str(sum_sacos25K*25)+'}" iot.igromi.com:8080/api/v1/0nMihSqafQ5IT3Rqoysa/telemetry --header "Content-Type:application/json"')
-os.system('curl -v -X POST -d "{\"Cost_kilo_total": '+str(result_total)+'}" iot.igromi.com:8080/api/v1/0nMihSqafQ5IT3Rqoysa/telemetry --header "Content-Type:application/json"')
+os.system('curl -v -X POST -d "{\"Cost_kilo_total": '+str(result_total_pesos)+'}" iot.igromi.com:8080/api/v1/0nMihSqafQ5IT3Rqoysa/telemetry --header "Content-Type:application/json"')
