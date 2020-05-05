@@ -61,7 +61,7 @@ print(str_begin_date)
 #horario laboral
 
 
-str_t8=end_date.strftime("%d/%m/%Y 8:00:00")
+str_t8=end_date.strftime("%d/%m/%Y 8:20:00")
 
 str_t13=end_date.strftime("%d/%m/%Y 13:00:00")
 
@@ -84,6 +84,6 @@ print(result_det)
 
 #if result_det == "ERROR" and (((date_to_milis(str_t1) >= date_to_milis(str_end_date)) and (date_to_milis(str_t2) <= date_to_milis(str_end_date)) ) or ((date_to_milis(str_t3) >= date_to_milis(str_end_date)) and (date_to_milis(str_t4) <= date_to_milis(str_end_date)))) :
 
-if (result_det == "ERROR") and ( (date_to_milis(str_end_date) >= date_to_milis(str_t8)) and (date_to_milis(str_end_date) <= date_to_milis(str_t13))) or ((date_to_milis(str_end_date) >= date_to_milis(str_t14)) and (date_to_milis(str_end_date) <= date_to_milis(str_t18))):
+if (result_det == "ERROR") and (( (date_to_milis(str_end_date) >= date_to_milis(str_t8)) and (date_to_milis(str_end_date) <= date_to_milis(str_t13)))     or      ((date_to_milis(str_end_date) >= date_to_milis(str_t14)) and (date_to_milis(str_end_date) <= date_to_milis(str_t18)))):
     os.system('curl -v -X POST -d "{\"Detencion_20_minutos\": 20}" http://localhost:8080/api/v1/0nMihSqafQ5IT3Rqoysa/telemetry --header "Content-Type:application/json"')
 

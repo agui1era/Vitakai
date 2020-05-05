@@ -120,7 +120,6 @@ else:
 avg_sacos10K=int(sum_sacos10K)/540
 avg_sacos25K=int(sum_sacos25K)/540
 
-sum_detenciones="0"
 
 print("Kilos en sacos de 10K: "+str(sum_sacos10K*10))
 print("Kilos en sacos de 25K: "+str(sum_sacos25K*25))
@@ -157,23 +156,23 @@ cell_format3.set_font_size(14)
 currency_format = workbook.add_format({'num_format': '$#'})
 
 # Write a total using a formula.
-worksheet.write(1, 1,'SISTEMA DE MONITOREO VITAKAI DEL DÍA '+ str_begin_date, cell_format3)
+worksheet.write(1, 1,'INFORME DE PRODUCIÓN DEL DÍA '+ str_begin_date, cell_format3)
 worksheet.write(5, 1,'Kilos en sacos de 10K:',bold)
-worksheet.write(5, 6, int(sum_sacos10K*10))
+worksheet.write(5, 7, int(sum_sacos10K*10))
 worksheet.write(7, 1,'Promedio de rendimiento Sacos de 10K x Minuto:',bold)
-worksheet.write(7, 6, round(avg_sacos10K,2))
+worksheet.write(7, 7, round(avg_sacos10K,2))
 worksheet.write(9, 1,'Kilos en sacos de 25K:',bold)
-worksheet.write(9, 6, int(sum_sacos25K*25))
+worksheet.write(9, 7, int(sum_sacos25K*25))
 worksheet.write(11, 1,'Promedio de rendimiento Sacos de 25K x Minuto:',bold)
-worksheet.write(11, 6, round(avg_sacos25K,2))
+worksheet.write(11, 7, round(avg_sacos25K,2))
 worksheet.write(13, 1,'Costo x kilo procesado:',bold)
-worksheet.write(13, 6, float(result_total_pesos),currency_format)
+worksheet.write(13, 7, float(result_total_pesos),currency_format)
 worksheet.write(15, 1,'*Cantidad de personas en la linea:',bold)
-worksheet.write(15, 6, int(cantidad_personas))
+worksheet.write(15, 7, int(cantidad_personas))
 worksheet.write(17, 1,'*Costo medio de la jornada:',bold)
-worksheet.write(17, 6,float(costo_medio_jornada),currency_format)
+worksheet.write(17, 7,float(costo_medio_jornada),currency_format)
 worksheet.write(19, 1,'Detenciones en minutos:',bold)
-worksheet.write(19, 6,sum_detenciones)
+worksheet.write(19, 7,int(sum_detenciones))
 worksheet.write(23, 1,'*Se considera los datos ingresados en la web de configuración en el cálculo',cell_format2)
 
 workbook.close()
