@@ -75,7 +75,7 @@ str_start_date=begin_date.strftime("%d/%m/%Y 6:00:00")
 str_end_date=begin_date.strftime("%d/%m/%Y 22:00:00")
 
 
-str_t8=begin_date.strftime("%d/%m/%Y 8:00:00")
+str_t8=begin_date.strftime("%d/%m/%Y 8:20:00")
 str_t13=begin_date.strftime("%d/%m/%Y 13:00:00")
 str_t14=begin_date.strftime("%d/%m/%Y 14:00:00")
 str_t18=begin_date.strftime("%d/%m/%Y 18:00:00")
