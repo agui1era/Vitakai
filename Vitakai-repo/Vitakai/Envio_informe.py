@@ -244,8 +244,6 @@ s.sendmail(fromaddr, "carlos.castillo@igromi.com", text)
 time.sleep(10)
 
 
-"""
-
 msg['To'] = "armorales@vitakai.com"
 s.sendmail(fromaddr, "armorales@vitakai.com", text) 
 
@@ -259,7 +257,6 @@ time.sleep(10)
 msg['To'] = "spinto@vitakai.com"
 s.sendmail(fromaddr, "spinto@vitakai.com", text) 
 
-"""
 escribir_log("Promedio sacos de 10K: "+str(avg_sacos10K))
 escribir_log("Promedio sacos de 25K: "+str(avg_sacos25K))
 
