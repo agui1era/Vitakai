@@ -117,9 +117,8 @@ if  (int(sum_sacos10K*10)== 0) and (int(sum_sacos25K*25)==0):
 else:
     result_total_pesos=str((cantidad_personas*costo_medio_jornada)/(int(sum_sacos10K*10)+int(sum_sacos25K*25)))
 
-avg_sacos10K=int(sum_sacos10K)/540
-avg_sacos25K=int(sum_sacos25K)/540
-
+avg_sacos10K=int(sum_sacos10K)/(540-int(sum_detenciones))
+avg_sacos25K=int(sum_sacos25K)/(540-int(sum_detenciones))
 
 print("Kilos en sacos de 10K: "+str(sum_sacos10K*10))
 print("Kilos en sacos de 25K: "+str(sum_sacos25K*25))
@@ -128,7 +127,7 @@ print("Costo medio jornada: "+str(costo_medio_jornada))
 print("Costo del kilo procesado: "+str(result_total_pesos))
 print("Promedio rendimiento 10K: "+str(avg_sacos10K))
 print("Promedio rendimiento 25K: "+str(avg_sacos25K))
-print("Denciones en minutos: "+str(sum_detenciones))
+print("Detenciones en minutos: "+str(sum_detenciones))
 
 
 #fechas para crear el informe del dia anterior
@@ -245,6 +244,7 @@ s.sendmail(fromaddr, "carlos.castillo@igromi.com", text)
 
 time.sleep(10)
 
+
 msg['To'] = "armorales@vitakai.com"
 s.sendmail(fromaddr, "armorales@vitakai.com", text) 
 
@@ -257,6 +257,19 @@ time.sleep(10)
 
 msg['To'] = "spinto@vitakai.com"
 s.sendmail(fromaddr, "spinto@vitakai.com", text) 
+
+escribir_log("Promedio sacos de 10K: "+str(avg_sacos10K))
+escribir_log("Promedio sacos de 25K: "+str(avg_sacos25K))
+
+avg_sacos10K=int(sum_sacos10K)/(540-int(sum_detenciones))
+avg_sacos25K=int(sum_sacos25K)/(540-int(sum_detenciones))
+
+escribir_log("Promedio sacos de 10K sin detenciones: "+str(avg_sacos10K))
+escribir_log("Promedio sacos de 25K sin detenciones: "+str(avg_sacos25K))
+
+
+escribir_log("Detenciones: "+str(sum_detenciones))
+escribir_log("Resta de detenciones: "+str(540-int(sum_detenciones)))
 
 # terminating the session 
 s.quit() 
