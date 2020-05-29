@@ -65,7 +65,7 @@ str_t8=end_date.strftime("%d/%m/%Y 8:20:00")
 
 str_t13=end_date.strftime("%d/%m/%Y 13:00:00")
 
-str_t14=end_date.strftime("%d/%m/%Y 14:00:00")
+str_t14=end_date.strftime("%d/%m/%Y 14:20:00")
 
 str_t18=end_date.strftime("%d/%m/%Y 18:00:00")
 

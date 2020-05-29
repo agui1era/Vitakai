@@ -77,7 +77,7 @@ str_end_date=begin_date.strftime("%d/%m/%Y 22:00:00")
 
 str_t8=begin_date.strftime("%d/%m/%Y 8:20:00")
 str_t13=begin_date.strftime("%d/%m/%Y 13:00:00")
-str_t14=begin_date.strftime("%d/%m/%Y 14:00:00")
+str_t14=begin_date.strftime("%d/%m/%Y 14:20:00")
 str_t18=begin_date.strftime("%d/%m/%Y 18:00:00")
 
 
@@ -141,7 +141,7 @@ print("Fecha de data del informe: "+str_begin_date)
 
 
 #Create a workbook and add a worksheet.
-workbook = xlsxwriter.Workbook('/home/Informe_producion-costos_VITAKAI_IoT_'+str_begin_date+'.xlsx')
+workbook = xlsxwriter.Workbook('/home/iot/Informe_producion-costos_VITAKAI_IoT_'+str_begin_date+'.xlsx')
 worksheet = workbook.add_worksheet()
 
 
@@ -156,24 +156,25 @@ cell_format3.set_font_size(14)
 currency_format = workbook.add_format({'num_format': '$#'})
 
 # Write a total using a formula.
-worksheet.write(1, 1,'INFORME DE PRODUCIÓN DEL DÍA '+ str_begin_date, cell_format3)
-worksheet.write(5, 1,'Kilos en sacos de 10K:',bold)
-worksheet.write(5, 7, int(sum_sacos10K*10))
-worksheet.write(7, 1,'Promedio de rendimiento Sacos de 10K x Minuto:',bold)
-worksheet.write(7, 7, round(avg_sacos10K,2))
-worksheet.write(9, 1,'Kilos en sacos de 25K:',bold)
-worksheet.write(9, 7, int(sum_sacos25K*25))
-worksheet.write(11, 1,'Promedio de rendimiento Sacos de 25K x Minuto:',bold)
-worksheet.write(11, 7, round(avg_sacos25K,2))
-worksheet.write(13, 1,'Costo x kilo procesado:',bold)
-worksheet.write(13, 7, float(result_total_pesos),currency_format)
-worksheet.write(15, 1,'*Cantidad de personas en la linea:',bold)
-worksheet.write(15, 7, int(cantidad_personas))
-worksheet.write(17, 1,'*Costo medio de la jornada:',bold)
-worksheet.write(17, 7,float(costo_medio_jornada),currency_format)
-worksheet.write(19, 1,'Detenciones en minutos:',bold)
-worksheet.write(19, 7,int(sum_detenciones))
-worksheet.write(23, 1,'*Se considera los datos ingresados en la web de configuración en el cálculo',cell_format2)
+worksheet.insert_image(1,1,'logo_infome.png')
+worksheet.write(12, 1,'INFORME DE PRODUCIÓN DEL DÍA '+ str_begin_date, cell_format3)
+worksheet.write(15, 1,'Kilos en sacos de 10K:',bold)
+worksheet.write(15, 7, int(sum_sacos10K*10))
+worksheet.write(17, 1,'Promedio de rendimiento Sacos de 10K x Minuto:',bold)
+worksheet.write(17, 7, round(avg_sacos10K,2))
+worksheet.write(19, 1,'Kilos en sacos de 25K:',bold)
+worksheet.write(19, 7, int(sum_sacos25K*25))
+worksheet.write(21, 1,'Promedio de rendimiento Sacos de 25K x Minuto:',bold)
+worksheet.write(21, 7, round(avg_sacos25K,2))
+worksheet.write(23, 1,'Costo x kilo procesado:',bold)
+worksheet.write(23, 7, float(result_total_pesos),currency_format)
+worksheet.write(25, 1,'*Cantidad de personas en la linea:',bold)
+worksheet.write(25, 7, int(cantidad_personas))
+worksheet.write(27, 1,'*Costo medio de la jornada:',bold)
+worksheet.write(27, 7,float(costo_medio_jornada),currency_format)
+worksheet.write(29, 1,'Detenciones en minutos:',bold)
+worksheet.write(29, 7,int(sum_detenciones))
+worksheet.write(33, 1,'*Se considera los datos ingresados en la web de configuración',cell_format2)
 
 workbook.close()
 
@@ -199,7 +200,7 @@ msg.attach(MIMEText(body, 'plain'))
 
 # open the file to be sent 
 filename = 'Informe_producion-costos_VITAKAI_IoT_'+str_begin_date+'.xlsx'
-attachment = open('/home/Informe_producion-costos_VITAKAI_IoT_'+str_begin_date+'.xlsx', "rb") 
+attachment = open('/home/iot/Informe_producion-costos_VITAKAI_IoT_'+str_begin_date+'.xlsx', "rb") 
 
 # instance of MIMEBase and named as p 
 p = MIMEBase('application', 'octet-stream') 
